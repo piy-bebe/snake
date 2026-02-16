@@ -126,17 +126,29 @@ class SnakeGame {
     return this.fruits.some((fruit) => fruit.position.x == x && fruit.position.y == y);
   }
 
-  checkTail(x: number, y: number): boolean {
-    return this.snake.tail.some((i) => i.x == x && i.y == y);
+  checkTail(x: number, y: number): [boolean, number] {
+    // return this.snake.tail.some((i) => i.x == x && i.y == y);
+
+    for (let i = 0; i < this.snake.tail.length; i++) {
+      if (this.snake.tail[i]?.x == x && this.snake.tail[i]?.y == y) {
+        return [true, i];
+      }
+    }
+
+    return [false, -1];
   }
 
   private createGrid(): void {
     for (let y = 0; y < this.gridSize; y++) {
       for (let x = 0; x < this.gridSize; x++) {
         const cell: HTMLDivElement = document.createElement('div');
-
-        if (this.checkTail(x, y)) {
-          cell.classList.add('snake');
+        const snakeDraw = this.checkTail(x, y);
+        if (snakeDraw[0]) {
+          if (snakeDraw[1] == 0) {
+            cell.classList.add('snake-head');
+          } else {
+            cell.classList.add('snake');
+          }
         } else if (this.checkFruits(x, y)) {
           cell.classList.add('fruit');
         } else {
