@@ -1,0 +1,5 @@
+.snake {
+  border: 1px solid rgb(92, 243, 95);
+  background-color: rgba(92, 243, 95, 0.3);
+  aspect-ratio: 1;
+}

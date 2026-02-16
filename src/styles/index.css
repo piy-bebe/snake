@@ -1,0 +1,15 @@
+@import url(game-field.css);
+@import url(snake.css);
+@import url(fruit.css);
+
+body {
+  padding: 0;
+  margin: 0;
+
+  background-color: rgb(16, 15, 22);
+
+  height: 100vh;
+  width: 100vw;
+
+  box-sizing: border-box;
+}

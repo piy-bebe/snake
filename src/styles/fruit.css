@@ -1,0 +1,5 @@
+.fruit {
+  border: 1px solid rgb(243, 190, 92);
+  background-color: rgba(243, 190, 92, 0.3);
+  aspect-ratio: 1;
+}

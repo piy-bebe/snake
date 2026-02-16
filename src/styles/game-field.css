@@ -1,0 +1,23 @@
+.game-container {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.game-field {
+  --grid-size: 0;
+
+  display: grid;
+  grid-template-columns: repeat(var(--grid-size), 1fr);
+  grid-template-rows: repeat(var(--grid-size), 1fr);
+  width: 800px; /* Адаптивный размер */
+  height: 800px;
+}
+
+.cell {
+  border: 1px dashed #202020;
+  background-color: transparent;
+  aspect-ratio: 1;
+}
