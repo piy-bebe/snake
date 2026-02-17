@@ -43,8 +43,6 @@ class SnakeGame {
         if (this.moveInterval) {
             clearInterval(this.moveInterval);
         }
-        const head = this.snake.tail[0];
-        let newHead = { x: head.x + 1, y: head.y };
         const keyMap = {
             d: { x: 1, y: 0 },
             ArrowRight: { x: 1, y: 0 },
@@ -61,10 +59,14 @@ class SnakeGame {
         if (!isValidKey(e.key))
             return;
         const delta = keyMap[e.key];
-        newHead = {
-            x: head.x + delta.x,
-            y: head.y + delta.y,
+        const currentHead = this.snake.tail[0];
+        let newHead = {
+            x: currentHead.x + delta.x,
+            y: currentHead.y + delta.y,
         };
+        if (newHead.x == this.snake.tail[1]?.x && newHead.y == this.snake.tail[1]?.y) {
+            return;
+        }
         this.snake.tail.unshift(newHead);
         this.snake.tail.pop();
         this.render();
