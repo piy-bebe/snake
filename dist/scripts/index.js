@@ -50,7 +50,7 @@ class SnakeGame {
             ArrowRight: { x: 1, y: 0 },
             a: { x: -1, y: 0 },
             ArrowLeft: { x: -1, y: 0 },
-            w: { x: -1, y: 0 },
+            w: { x: 0, y: -1 },
             ArrowUp: { x: 0, y: -1 },
             s: { x: 0, y: 1 },
             ArrowDown: { x: 0, y: 1 },
