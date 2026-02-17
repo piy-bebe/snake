@@ -35,6 +35,7 @@ class SnakeGame {
         if (!this.area)
             return;
         this.area.addEventListener('keydown', (e) => {
+            console.log('asd');
             this.handleKeyPress(e);
         });
     }
@@ -44,17 +45,20 @@ class SnakeGame {
         }
         const head = this.snake.tail[0];
         let newHead = { x: head.x + 1, y: head.y };
-        if (e.key == 'd') {
+        if (e.key == 'd' || e.key == 'ArrowRight') {
             newHead = { x: head.x + 1, y: head.y };
         }
-        else if (e.key == 'a') {
+        else if (e.key == 'a' || e.key == 'ArrowLeft') {
             newHead = { x: head.x - 1, y: head.y };
         }
-        else if (e.key == 'w') {
+        else if (e.key == 'w' || e.key == 'ArrowUp') {
             newHead = { x: head.x, y: head.y - 1 };
         }
-        else if (e.key == 's') {
+        else if (e.key == 's' || e.key == 'ArrowDown') {
             newHead = { x: head.x, y: head.y + 1 };
+        }
+        else {
+            return;
         }
         this.snake.tail.unshift(newHead);
         this.snake.tail.pop();
