@@ -82,29 +82,6 @@ class SnakeGame {
     this.snake.tail.pop();
 
     this.render();
-
-    // switch (e.key) {
-    //   case 'w':
-    //     this.startMoving(() => {
-    //       this.snake.position.y -= 1;
-    //     });
-    //     break;
-    //   case 's':
-    //     this.startMoving(() => {
-    //       this.snake.position.y += 1;
-    //     });
-    //     break;
-    //   case 'a':
-    //     this.startMoving(() => {
-    //       this.snake.position.x -= 1;
-    //     });
-    //     break;
-    //   case 'd':
-    //     this.startMoving(() => {
-    //       this.snake.position.x += 1;
-    //     });
-    //     break;
-    // }
   }
 
   destroy() {
