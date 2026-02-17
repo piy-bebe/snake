@@ -45,21 +45,26 @@ class SnakeGame {
         }
         const head = this.snake.tail[0];
         let newHead = { x: head.x + 1, y: head.y };
-        if (e.key == 'd' || e.key == 'ArrowRight') {
-            newHead = { x: head.x + 1, y: head.y };
-        }
-        else if (e.key == 'a' || e.key == 'ArrowLeft') {
-            newHead = { x: head.x - 1, y: head.y };
-        }
-        else if (e.key == 'w' || e.key == 'ArrowUp') {
-            newHead = { x: head.x, y: head.y - 1 };
-        }
-        else if (e.key == 's' || e.key == 'ArrowDown') {
-            newHead = { x: head.x, y: head.y + 1 };
-        }
-        else {
+        const keyMap = {
+            d: { x: 1, y: 0 },
+            ArrowRight: { x: 1, y: 0 },
+            a: { x: -1, y: 0 },
+            ArrowLeft: { x: -1, y: 0 },
+            w: { x: -1, y: 0 },
+            ArrowUp: { x: 0, y: -1 },
+            s: { x: 0, y: 1 },
+            ArrowDown: { x: 0, y: 1 },
+        };
+        const isValidKey = (key) => {
+            return key in keyMap;
+        };
+        if (!isValidKey(e.key))
             return;
-        }
+        const delta = keyMap[e.key];
+        newHead = {
+            x: head.x + delta.x,
+            y: head.y + delta.y,
+        };
         this.snake.tail.unshift(newHead);
         this.snake.tail.pop();
         this.render();
