@@ -1,4 +1,4 @@
-import type { Tail } from '../core/interfaces/types';
+import type { Fruits, Point, Tail } from '../core/interfaces/types';
 
 export default class Snake {
   private _snake: Tail;
@@ -16,6 +16,23 @@ export default class Snake {
 
   get tail() {
     return this._snake.tail;
+  }
+
+  get head() {
+    return this._snake.tail[0];
+  }
+
+  grow() {
+    const cTail = this.tail;
+    // const newPart = { x: cTail[cTail.length - 1]?.x, y: cTail[cTail.length - 1]?.y }
+    if (this.tail[0]) {
+      this._snake.tail = [...cTail, { x: this.tail[0].x, y: this.tail[0].y }];
+    }
+  }
+
+  tryEat(foodPosition: Fruits[]): boolean {
+    const head: Point | undefined = this.head;
+    return foodPosition.some((fruit: Fruits) => fruit.position.x == head?.x && fruit.position.y == head?.y);
   }
 
   checkTail(x: number, y: number): [boolean, number] {

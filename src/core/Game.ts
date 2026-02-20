@@ -20,12 +20,12 @@ export default class SnakeGame {
   };
 
   constructor() {
-    console.log('asdsa');
     this.field = document.querySelector('#gameField');
 
     this.snake = new Snake();
     this.food = new Food();
-    this.snakeControl = new SnakeControl(this.snake, this.render);
+
+    this.snakeControl = new SnakeControl(this.snake, this.render, this.food);
 
     this.setGridSize(this.gridSize);
   }

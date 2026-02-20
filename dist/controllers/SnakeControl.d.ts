@@ -1,9 +1,9 @@
-import type { Tail } from '../core/interfaces/types';
 export default class SnakeControl {
     private area;
     private snake;
     private render;
-    constructor(snake: Tail, render: any);
+    private food;
+    constructor(snake: any, render: any, food: any);
     initControls(): void;
     private handleKeyPress;
 }

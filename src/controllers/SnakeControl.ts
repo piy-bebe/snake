@@ -2,12 +2,14 @@ import type { Point, Tail } from '../core/interfaces/types';
 
 export default class SnakeControl {
   private area: HTMLElement | null;
-  private snake: Tail;
+  private snake;
   private render;
+  private food;
 
-  constructor(snake: Tail, render: any) {
+  constructor(snake: any, render: any, food: any) {
     this.snake = snake;
     this.render = render;
+    this.food = food.positions;
     this.area = document.querySelector('html');
     this.initControls();
   }
@@ -61,6 +63,10 @@ export default class SnakeControl {
     this.snake.tail.unshift(newHead);
     this.snake.tail.pop();
 
+    if (this.snake.tryEat(this.food)) {
+      console.log('СКУШАЛИ ЭТУ НЯМУ');
+      this.snake.grow();
+    }
     this.render();
   }
 }

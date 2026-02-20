@@ -13,6 +13,20 @@ export default class Snake {
     get tail() {
         return this._snake.tail;
     }
+    get head() {
+        return this._snake.tail[0];
+    }
+    grow() {
+        const cTail = this.tail;
+        // const newPart = { x: cTail[cTail.length - 1]?.x, y: cTail[cTail.length - 1]?.y }
+        if (this.tail[0]) {
+            this._snake.tail = [...cTail, { x: this.tail[0].x, y: this.tail[0].y }];
+        }
+    }
+    tryEat(foodPosition) {
+        const head = this.head;
+        return foodPosition.some((fruit) => fruit.position.x == head?.x && fruit.position.y == head?.y);
+    }
     checkTail(x, y) {
         for (let i = 0; i < this._snake.tail.length; i++) {
             if (this._snake.tail[i]?.x == x && this._snake.tail[i]?.y == y) {

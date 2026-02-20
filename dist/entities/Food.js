@@ -4,6 +4,9 @@ export default class Food {
     constructor(quantity = 1) {
         this.quantity = quantity;
     }
+    get positions() {
+        return this.fruits;
+    }
     checkFruits(x, y) {
         return this.fruits.some((fruit) => fruit.position.x == x && fruit.position.y == y);
     }

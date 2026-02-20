@@ -8,6 +8,10 @@ export default class Food {
     this.quantity = quantity;
   }
 
+  get positions() {
+    return this.fruits;
+  }
+
   checkFruits(x: number, y: number): boolean {
     return this.fruits.some((fruit) => fruit.position.x == x && fruit.position.y == y);
   }
