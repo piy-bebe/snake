@@ -2,12 +2,12 @@ interface Position {
     x: number;
     y: number;
 }
-export interface Tail {
+export interface Point {
     x: number;
     y: number;
 }
-export interface Snake {
-    tail: Tail[];
+export interface Tail {
+    tail: Point[];
 }
 export interface Fruits {
     position: Position;

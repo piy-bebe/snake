@@ -1,53 +1,29 @@
-import type { Snake, Fruits, Tail } from './types';
+import type { Point, Fruits, Tail } from './types';
 
-class SnakeGame {
-  private field: HTMLElement | null;
-  private gridSize: number = 17;
+class SnakeControl {
   private area: HTMLElement | null;
-  private moveInterval: number | null = null;
-  private currentDirection: string = '';
-  private fruits: Fruits[] = [{ position: { x: 3, y: 2 } }, { position: { x: 15, y: 8 } }];
-  private snake: Snake = {
-    tail: [
-      {
-        x: 1,
-        y: 3,
-      },
-      {
-        x: 2,
-        y: 3,
-      },
-      {
-        x: 3,
-        y: 3,
-      },
-      {
-        x: 4,
-        y: 3,
-      },
-    ],
-  };
+  private snake: Tail;
+  private render;
 
-  constructor() {
+  constructor(snake: Tail, render: any) {
+    this.snake = snake;
+    this.render = render;
     this.area = document.querySelector('html');
-    this.field = document.querySelector('#gameField');
-    this.setGridSize(this.gridSize);
     this.initControls();
   }
 
-  private initControls(): void {
+  initControls(): void {
     if (!this.area) return;
 
     this.area.addEventListener('keydown', (e) => {
-      console.log('asd');
       this.handleKeyPress(e);
     });
   }
 
   private handleKeyPress(e: KeyboardEvent): void {
-    if (this.moveInterval) {
-      clearInterval(this.moveInterval);
-    }
+    // if (this.moveInterval) {
+    //   clearInterval(this.moveInterval);
+    // }
 
     type Direction = { x: number; y: number };
     type ValidKey = 'd' | 'ArrowRight' | 'a' | 'ArrowLeft' | 'w' | 'ArrowUp' | 's' | 'ArrowDown';
@@ -71,7 +47,7 @@ class SnakeGame {
 
     const delta = keyMap[e.key];
 
-    const currentHead: Tail = this.snake.tail[0]!;
+    const currentHead: Point = this.snake.tail[0]!;
 
     let newHead = {
       x: currentHead.x + delta.x,
@@ -86,6 +62,64 @@ class SnakeGame {
     this.snake.tail.pop();
 
     this.render();
+  }
+}
+
+class Snake {
+  private _snake: Tail;
+
+  constructor() {
+    this._snake = {
+      tail: [
+        { x: 1, y: 3 },
+        { x: 2, y: 3 },
+        { x: 3, y: 3 },
+        { x: 4, y: 3 },
+      ],
+    };
+  }
+
+  get tail() {
+    return this._snake.tail;
+  }
+
+  checkTail(x: number, y: number): [boolean, number] {
+    for (let i = 0; i < this._snake.tail.length; i++) {
+      if (this._snake.tail[i]?.x == x && this._snake.tail[i]?.y == y) {
+        return [true, i];
+      }
+    }
+
+    return [false, -1];
+  }
+}
+
+class SnakeGame {
+  private field: HTMLElement | null;
+  private gridSize: number = 17;
+  private moveInterval: number | null = null;
+  private currentDirection: string = '';
+  private fruits: Fruits[] = [{ position: { x: 3, y: 2 } }, { position: { x: 15, y: 8 } }];
+  private snake;
+  private snakeControl;
+
+  private render = () => {
+    if (this.field) {
+      this.field.innerHTML = '';
+      this.createGrid();
+    } else {
+      console.error('Game field not found!');
+    }
+  };
+
+  constructor() {
+    this.field = document.querySelector('#gameField');
+
+    this.snake = new Snake();
+    this.snakeControl = new SnakeControl(this.snake, this.render);
+
+    this.setGridSize(this.gridSize);
+    // this.initControls();
   }
 
   destroy() {
@@ -112,38 +146,18 @@ class SnakeGame {
     this.createGrid();
   }
 
-  render() {
-    if (this.field) {
-      this.field.innerHTML = '';
-      this.createGrid();
-    } else {
-      console.error('Game field not found!');
-    }
-  }
-
   checkFruits(x: number, y: number): boolean {
     return this.fruits.some((fruit) => fruit.position.x == x && fruit.position.y == y);
-  }
-
-  checkTail(x: number, y: number): [boolean, number] {
-    // return this.snake.tail.some((i) => i.x == x && i.y == y);
-
-    for (let i = 0; i < this.snake.tail.length; i++) {
-      if (this.snake.tail[i]?.x == x && this.snake.tail[i]?.y == y) {
-        return [true, i];
-      }
-    }
-
-    return [false, -1];
   }
 
   private createGrid(): void {
     for (let y = 0; y < this.gridSize; y++) {
       for (let x = 0; x < this.gridSize; x++) {
         const cell: HTMLDivElement = document.createElement('div');
-        const snakeDraw = this.checkTail(x, y);
-        if (snakeDraw[0]) {
-          if (snakeDraw[1] == 0) {
+        const tail = this.snake.checkTail(x, y);
+
+        if (tail[0]) {
+          if (tail[1] == 0) {
             cell.classList.add('snake-head');
           } else {
             cell.classList.add('snake');
