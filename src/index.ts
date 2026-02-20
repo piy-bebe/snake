@@ -1,3 +1,3 @@
-import SnakeGame from './core/Game';
+import SnakeGame from './core/Game.js';
 
 new SnakeGame();

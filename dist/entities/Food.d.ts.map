@@ -1,0 +1,1 @@
+{"version":3,"file":"Food.d.ts","sourceRoot":"","sources":["../../src/entities/Food.ts"],"names":[],"mappings":"AAEA,MAAM,CAAC,OAAO,OAAO,IAAI;IACvB,OAAO,CAAC,QAAQ,CAAS;IACzB,OAAO,CAAC,MAAM,CAA2E;gBAE7E,QAAQ,GAAE,MAAU;IAIhC,WAAW,CAAC,CAAC,EAAE,MAAM,EAAE,CAAC,EAAE,MAAM,GAAG,OAAO;CAG3C"}

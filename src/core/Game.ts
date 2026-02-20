@@ -1,15 +1,13 @@
-import Snake from '../entities/Snake';
-import SnakeControl from '../controllers/SnakeControl';
-
-import type { Fruits } from './interfaces/types';
+import Snake from '../entities/Snake.js';
+import Food from '../entities/Food.js';
+import SnakeControl from '../controllers/SnakeControl.js';
 
 export default class SnakeGame {
   private field: HTMLElement | null;
   private gridSize: number = 17;
   private moveInterval: number | null = null;
-
-  private fruits: Fruits[] = [{ position: { x: 3, y: 2 } }, { position: { x: 15, y: 8 } }];
   private snake;
+  private food;
   private snakeControl;
 
   private render = () => {
@@ -22,13 +20,14 @@ export default class SnakeGame {
   };
 
   constructor() {
+    console.log('asdsa');
     this.field = document.querySelector('#gameField');
 
     this.snake = new Snake();
+    this.food = new Food();
     this.snakeControl = new SnakeControl(this.snake, this.render);
 
     this.setGridSize(this.gridSize);
-    // this.initControls();
   }
 
   destroy() {
@@ -38,25 +37,11 @@ export default class SnakeGame {
     }
   }
 
-  private startMoving(moveCallback: () => void): void {
-    moveCallback();
-    this.render();
-
-    this.moveInterval = setInterval(() => {
-      moveCallback();
-      this.render();
-    }, 500);
-  }
-
   setGridSize(size: number) {
     this.gridSize = size;
 
     this.field?.style.setProperty('--grid-size', this.gridSize.toString());
     this.createGrid();
-  }
-
-  checkFruits(x: number, y: number): boolean {
-    return this.fruits.some((fruit) => fruit.position.x == x && fruit.position.y == y);
   }
 
   private createGrid(): void {
@@ -71,7 +56,7 @@ export default class SnakeGame {
           } else {
             cell.classList.add('snake');
           }
-        } else if (this.checkFruits(x, y)) {
+        } else if (this.food.checkFruits(x, y)) {
           cell.classList.add('fruit');
         } else {
           cell.classList.add('cell');
