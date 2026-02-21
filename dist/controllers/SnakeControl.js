@@ -6,7 +6,7 @@ export default class SnakeControl {
     constructor(snake, render, food) {
         this.snake = snake;
         this.render = render;
-        this.food = food.positions;
+        this.food = food;
         this.area = document.querySelector('html');
         this.initControls();
     }
@@ -47,9 +47,9 @@ export default class SnakeControl {
         }
         this.snake.tail.unshift(newHead);
         this.snake.tail.pop();
-        if (this.snake.tryEat(this.food)) {
-            console.log('СКУШАЛИ ЭТУ НЯМУ');
+        if (this.snake.tryEat(this.food.positions)) {
             this.snake.grow();
+            this.food.onEat(newHead);
         }
         this.render();
     }

@@ -4,6 +4,10 @@ export default class Food {
     private fruits;
     constructor(quantity?: number);
     get positions(): Fruits[];
+    onEat(eatFruit: {
+        x: number;
+        y: number;
+    }): void;
     checkFruits(x: number, y: number): boolean;
 }
 //# sourceMappingURL=Food.d.ts.map

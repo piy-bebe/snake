@@ -7,6 +7,10 @@ export default class Food {
     get positions() {
         return this.fruits;
     }
+    onEat(eatFruit) {
+        const newFruits = this.fruits.filter((fruit) => fruit.position.x !== eatFruit.x && fruit.position.y !== eatFruit.y);
+        this.fruits = [...newFruits];
+    }
     checkFruits(x, y) {
         return this.fruits.some((fruit) => fruit.position.x == x && fruit.position.y == y);
     }

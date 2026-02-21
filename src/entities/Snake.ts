@@ -24,7 +24,6 @@ export default class Snake {
 
   grow() {
     const cTail = this.tail;
-    // const newPart = { x: cTail[cTail.length - 1]?.x, y: cTail[cTail.length - 1]?.y }
     if (this.tail[0]) {
       this._snake.tail = [...cTail, { x: this.tail[0].x, y: this.tail[0].y }];
     }
