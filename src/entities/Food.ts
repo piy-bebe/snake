@@ -1,12 +1,10 @@
 import type { Fruits } from '../core/interfaces/types';
 
 export default class Food {
-  private quantity: number;
   private fruits: Fruits[] = [{ position: { x: 3, y: 1 } }, { position: { x: 15, y: 8 } }];
   private gridSize: number;
 
-  constructor(size: number, quantity: number = 1) {
-    this.quantity = quantity;
+  constructor(size: number) {
     this.gridSize = size;
   }
 
@@ -18,7 +16,7 @@ export default class Food {
     return Math.floor(Math.random() * this.gridSize);
   }
 
-  private respawn() {
+  private respawn(): void {
     const newFruit = { position: { x: this.generatePosition(), y: this.generatePosition() } };
     this.fruits = [...this.fruits, newFruit];
   }
