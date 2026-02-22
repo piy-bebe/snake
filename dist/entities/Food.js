@@ -1,8 +1,9 @@
 export default class Food {
-    fruits = [{ position: { x: 3, y: 1 } }, { position: { x: 15, y: 8 } }];
+    fruits = [];
     gridSize;
     constructor(size) {
         this.gridSize = size;
+        this.respawn();
     }
     get positions() {
         return this.fruits;

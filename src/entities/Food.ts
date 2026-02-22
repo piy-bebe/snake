@@ -1,11 +1,12 @@
 import type { Fruits } from '../core/interfaces/types';
 
 export default class Food {
-  private fruits: Fruits[] = [{ position: { x: 3, y: 1 } }, { position: { x: 15, y: 8 } }];
+  private fruits: Fruits[] = [];
   private gridSize: number;
 
   constructor(size: number) {
     this.gridSize = size;
+    this.respawn();
   }
 
   get positions() {
