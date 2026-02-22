@@ -23,7 +23,7 @@ export default class SnakeGame {
     this.field = document.querySelector('#gameField');
 
     this.snake = new Snake();
-    this.food = new Food(this.gridSize);
+    this.food = new Food(this.gridSize, 3);
 
     this.snakeControl = new SnakeControl(this.snake, this.render, this.food);
 

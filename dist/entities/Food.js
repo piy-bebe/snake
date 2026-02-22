@@ -1,9 +1,11 @@
 export default class Food {
     fruits = [];
     gridSize;
-    constructor(size) {
+    quantity;
+    constructor(size, quantity = 1) {
         this.gridSize = size;
-        this.respawn();
+        this.quantity = quantity;
+        this.respawn(this.quantity);
     }
     get positions() {
         return this.fruits;
@@ -11,9 +13,11 @@ export default class Food {
     generatePosition() {
         return Math.floor(Math.random() * this.gridSize);
     }
-    respawn() {
-        const newFruit = { position: { x: this.generatePosition(), y: this.generatePosition() } };
-        this.fruits = [...this.fruits, newFruit];
+    respawn(count = 1) {
+        for (let i = 0; i < count; i++) {
+            const newFruit = { position: { x: this.generatePosition(), y: this.generatePosition() } };
+            this.fruits = [...this.fruits, newFruit];
+        }
     }
     onEat(eatFruit) {
         const filteredFruits = this.fruits.filter((fruit) => fruit.position.x !== eatFruit.x && fruit.position.y !== eatFruit.y);

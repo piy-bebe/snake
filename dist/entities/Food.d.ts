@@ -2,7 +2,8 @@ import type { Fruits } from '../core/interfaces/types';
 export default class Food {
     private fruits;
     private gridSize;
-    constructor(size: number);
+    private quantity;
+    constructor(size: number, quantity?: number);
     get positions(): Fruits[];
     private generatePosition;
     private respawn;
