@@ -45,6 +45,10 @@ export default class SnakeControl {
         if (newHead.x == this.snake.tail[1]?.x && newHead.y == this.snake.tail[1]?.y) {
             return;
         }
+        // тут проверяю, упираюсь ли я в свой хвост
+        if (this.snake.tail.some((t) => t.x === newHead.x && t.y === newHead.y)) {
+            return;
+        }
         this.snake.tail.unshift(newHead);
         this.snake.tail.pop();
         if (this.snake.tryEat(this.food.positions)) {

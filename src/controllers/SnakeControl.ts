@@ -60,6 +60,11 @@ export default class SnakeControl {
       return;
     }
 
+    // тут проверяю, упираюсь ли я в свой хвост
+    if (this.snake.tail.some((t: Point) => t.x === newHead.x && t.y === newHead.y)) {
+      return;
+    }
+
     this.snake.tail.unshift(newHead);
     this.snake.tail.pop();
 
