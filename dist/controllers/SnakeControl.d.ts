@@ -3,7 +3,8 @@ export default class SnakeControl {
     private snake;
     private render;
     private food;
-    constructor(snake: any, render: any, food: any);
+    private score;
+    constructor(snake: any, render: any, food: any, score: any);
     initControls(): void;
     private handleKeyPress;
 }

@@ -1,0 +1,1 @@
+{"version":3,"file":"Score.d.ts","sourceRoot":"","sources":["../../src/entities/Score.ts"],"names":[],"mappings":"AAAA,MAAM,CAAC,OAAO,OAAO,KAAK;IACxB,OAAO,CAAC,KAAK,CAAS;IACtB,OAAO,CAAC,YAAY,CAAkB;gBAE1B,YAAY,GAAE,MAAU;IAc7B,kBAAkB,IAAI,eAAe;IAQ5C,SAAS,CAAC,MAAM,GAAE,MAAU,GAAG,IAAI;IAKnC,OAAO,CAAC,aAAa;CAGtB"}

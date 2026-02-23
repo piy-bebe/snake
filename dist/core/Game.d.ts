@@ -5,6 +5,7 @@ export default class SnakeGame {
     private snake;
     private food;
     private snakeControl;
+    private score;
     private render;
     constructor();
     destroy(): void;

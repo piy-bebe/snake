@@ -1,6 +1,7 @@
 @import url(game-field.css);
 @import url(snake.css);
 @import url(fruit.css);
+@import url(score.css);
 
 body {
   padding: 0;

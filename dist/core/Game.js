@@ -1,6 +1,7 @@
 import Snake from '../entities/Snake.js';
 import Food from '../entities/Food.js';
 import SnakeControl from '../controllers/SnakeControl.js';
+import Score from '../entities/Score.js';
 export default class SnakeGame {
     field;
     gridSize = 17;
@@ -8,6 +9,7 @@ export default class SnakeGame {
     snake;
     food;
     snakeControl;
+    score;
     render = () => {
         if (this.field) {
             this.field.innerHTML = '';
@@ -21,7 +23,8 @@ export default class SnakeGame {
         this.field = document.querySelector('#gameField');
         this.snake = new Snake();
         this.food = new Food(this.gridSize, 4, this.snake);
-        this.snakeControl = new SnakeControl(this.snake, this.render, this.food);
+        this.score = new Score();
+        this.snakeControl = new SnakeControl(this.snake, this.render, this.food, this.score);
         this.setGridSize(this.gridSize);
     }
     destroy() {

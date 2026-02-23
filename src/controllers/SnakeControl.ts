@@ -5,11 +5,13 @@ export default class SnakeControl {
   private snake;
   private render;
   private food;
+  private score;
 
-  constructor(snake: any, render: any, food: any) {
+  constructor(snake: any, render: any, food: any, score: any) {
     this.snake = snake;
     this.render = render;
     this.food = food;
+    this.score = score;
     this.area = document.querySelector('html');
     this.initControls();
   }
@@ -69,6 +71,7 @@ export default class SnakeControl {
     this.snake.tail.pop();
 
     if (this.snake.tryEat(this.food.positions)) {
+      this.score.increment();
       this.snake.grow();
       this.food.onEat(newHead);
     }
