@@ -28,12 +28,12 @@ export default class Food {
 
   onEat(eatFruit: { x: number; y: number }): void {
     const filteredFruits = this.fruits.filter(
-      (fruit) => fruit.position.x !== eatFruit.x && fruit.position.y !== eatFruit.y,
+      (fruit) => fruit.position.x !== eatFruit.x || fruit.position.y !== eatFruit.y,
     );
 
     this.fruits = [...filteredFruits];
 
-    this.respawn();
+    // this.respawn();
   }
 
   checkFruits(x: number, y: number): boolean {

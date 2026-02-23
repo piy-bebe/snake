@@ -17,9 +17,8 @@ export default class Snake {
         return this._snake.tail[0];
     }
     grow() {
-        const cTail = this.tail;
         if (this.tail[0]) {
-            this._snake.tail = [...cTail, { x: this.tail[0].x, y: this.tail[0].y }];
+            this._snake.tail = [...this.tail, { x: this.tail[0].x, y: this.tail[0].y }];
         }
     }
     tryEat(foodPosition) {

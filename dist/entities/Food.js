@@ -20,9 +20,9 @@ export default class Food {
         }
     }
     onEat(eatFruit) {
-        const filteredFruits = this.fruits.filter((fruit) => fruit.position.x !== eatFruit.x && fruit.position.y !== eatFruit.y);
+        const filteredFruits = this.fruits.filter((fruit) => fruit.position.x !== eatFruit.x || fruit.position.y !== eatFruit.y);
         this.fruits = [...filteredFruits];
-        this.respawn();
+        // this.respawn();
     }
     checkFruits(x, y) {
         return this.fruits.some((fruit) => fruit.position.x == x && fruit.position.y == y);
